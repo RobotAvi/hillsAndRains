@@ -5,6 +5,9 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
+/*Model. model with hills and rain heights*/
+
+
 @Component
 public class Hills {
 
@@ -14,6 +17,8 @@ public class Hills {
     private String hillsHeights;
     private List<String> histogramHeights;
 
+    /*Generates jstl String for foreach in index.jsp histogram
+    * TODO:Must be moved to view*/
     public List<String> getHistogramHeights() {
         if (rainArray.size() > 0 && hillsArray.size() > 0) {
             StringBuilder sb = new StringBuilder();
@@ -40,6 +45,8 @@ public class Hills {
         return hillsHeights;
     }
 
+    /*Set height that was taken from user.
+    TODO: Functional must be moved to controller*/
     public void setHillsHeights(String hillsHeights) {
         this.hillsHeights = hillsHeights;
         for (String hillHeight : hillsHeights.split(",")) {
@@ -53,7 +60,7 @@ public class Hills {
         return hillsArray;
     }
 
-    public void setHillsArray(ArrayList<Integer> hills) {
+    public void setHillsArray(ArrayList<Integer> hillsArray) {
         this.hillsArray = hillsArray;
     }
 

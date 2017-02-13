@@ -10,10 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+/*This class is just controller (MVC)
+* It will get requests with mappings and will recreate model
+* for rebuilding histogram with hills and waiter*/
+
 @Controller
 public class MainController {
 
-
+    /*Start point. It will ask for values of hills heights.*/
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView main() {
         ModelAndView modelAndView = new ModelAndView();
@@ -23,6 +27,7 @@ public class MainController {
         return modelAndView;
     }
 
+    /*The same as index, but will create histogram with water and hills*/
     @RequestMapping(value = "/getWater")
     public ModelAndView getWater(@ModelAttribute("hills") Hills hills) {
         ModelAndView modelAndView = new ModelAndView();

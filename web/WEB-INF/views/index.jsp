@@ -12,6 +12,7 @@
     function drawChart() {
         var data = google.visualization.arrayToDataTable([
             ['Hill height/rain height','Hill', 'Rain'],
+            // TODO: Replace with model foreach
             ['3/5', 3, 0],
             ['3/5', 2, 1],
             ['3/5', 1, 2],
@@ -35,8 +36,10 @@
 
 <div id="hills" align="center" style="width: 80%; height: 50%;"></div>
 <div align="center">
+    <%--TODO: check input--%>
     <spring:form method="post" modelAttribute="hills" action="getWater" align="center">
         Put hills height(ex. 2, 5, 6, 1, 7):<spring:input path="hillsHeights"/>
+
         <spring:button>Fill pools</spring:button>
     </spring:form>
 </div>
