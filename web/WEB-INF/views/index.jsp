@@ -29,7 +29,9 @@
 
 <div id="hills" align="center" style="width: 80%; height: 50%;"></div>
 <div align="center">
-    <%--TODO: check input--%>
+    <p>
+        Rain count: <c:out value='${rainCount}'>Unknown</c:out>
+    </p>
     <spring:form method="post" modelAttribute="hills" action="getWater" align="center">
         Put hills height(ex. 2, 5, 6, 1, 7):<spring:input path="hillsHeights"/>
 

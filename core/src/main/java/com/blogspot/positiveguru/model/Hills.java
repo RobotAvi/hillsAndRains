@@ -2,10 +2,10 @@ package com.blogspot.positiveguru.model;
 
 import com.blogspot.positiveguru.calculator.Rain;
 import com.blogspot.positiveguru.calculator.RainCalculator;
+import javax.validation.constraints.*;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /*Model. model with hills and rain heights*/
 
@@ -16,6 +16,9 @@ public class Hills {
     private ArrayList<Integer> hillsArray = new ArrayList<>();
     private ArrayList<Integer> rainArray = new ArrayList<>();
     private int rainCount = 0;
+
+    @NotNull
+    @Pattern(regexp = "[0-9]+", message = "invalid.amount")
     private String hillsHeights = "";
     private ArrayList<String> histogramHeights = new ArrayList<>();
 
