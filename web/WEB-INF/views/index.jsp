@@ -1,10 +1,10 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
 <%@page contentType="text/html;charset=UTF-8" language="java" %>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
 <body>
-
 <script src="https://www.google.com/jsapi"></script>
 <script>
     google.load("visualization", "1", {packages: ["corechart"]});
@@ -13,14 +13,7 @@
         var data = google.visualization.arrayToDataTable([
             ['Hill height/rain height','Hill', 'Rain'],
             // TODO: Replace with model foreach
-            ['3/5', 3, 0],
-            ['3/5', 2, 1],
-            ['3/5', 1, 2],
-            ['3/5', 4, 0],
-            ['3/5', 3, 0],
-            ['3/5', 2, 1],
-            ['3/5', 1, 2],
-            ['3/5', 4, 0]
+            <c:forEach var='height' items ='${hills.histogramHeights}' > ${height}</c:forEach>
 
         ]);
 

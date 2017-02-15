@@ -24,7 +24,11 @@ public class MainController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView main() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("hills", new Hills());
+        Hills hills=new Hills();
+        hills.setHillsHeights("4,1,1,0,2,3");
+
+
+        modelAndView.addObject("hills", hills);
         modelAndView.setViewName("index");
 
         return modelAndView;
@@ -35,11 +39,6 @@ public class MainController {
     public ModelAndView getWater(@ModelAttribute("hills") Hills hills) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("index");
-
-        Rain rain = RainCalculator.calculateRain(hills.getHillsArray());
-        hills.setRainArray(rain.getRainHeight());
-        hills.setRainCount(rain.getCount());
-
 
         modelAndView.addObject("hills", hills);
         return modelAndView;

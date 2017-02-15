@@ -3,7 +3,6 @@ package com.blogspot.positiveguru;
 import com.blogspot.positiveguru.calculator.Rain;
 import com.blogspot.positiveguru.calculator.RainCalculator;
 import com.blogspot.positiveguru.model.Hills;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 

@@ -1,5 +1,7 @@
 package com.blogspot.positiveguru.model;
 
+import com.blogspot.positiveguru.calculator.Rain;
+import com.blogspot.positiveguru.calculator.RainCalculator;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -20,12 +22,16 @@ public class Hills {
     /*Generates jstl String for foreach in index.jsp histogram
     */
     public ArrayList<String> getHistogramHeights() {
+        Rain rain = RainCalculator.calculateRain(this.getHillsArray());
+        this.setRainArray(rain.getRainHeight());
+        this.setRainCount(rain.getCount());
+
         if (rainArray.size() > 0 && hillsArray.size() > 0) {
             StringBuilder sb = new StringBuilder();
 
             for (int i = 0; i < hillsArray.size(); i++) {
                 sb.setLength(0);
-                sb.append("'");
+                sb.append("['");
                 sb.append(hillsArray.get(i));
                 sb.append("/");
                 sb.append(rainArray.get(i));
@@ -33,7 +39,8 @@ public class Hills {
                 sb.append(hillsArray.get(i));
                 sb.append(", ");
                 sb.append(rainArray.get(i));
-
+                sb.append("]");
+                if (i != hillsArray.size() - 1) sb.append(",");
                 histogramHeights.add(sb.toString());
             }
         }
