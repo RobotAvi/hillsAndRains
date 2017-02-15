@@ -1,8 +1,8 @@
 package com.blogspot.positiveguru;
 
+import com.blogspot.positiveguru.calculator.Rain;
 import com.blogspot.positiveguru.calculator.RainCalculator;
 import com.blogspot.positiveguru.model.Hills;
-import com.sun.java.swing.plaf.windows.WindowsInternalFrameTitlePane;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,13 +12,11 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
- * Test correct count calculating of rain
+ * Test controllermethods
  */
+public class HillsHistogramTest {
 
-public class RainControllerWaterCountTest {
-
-    String[] sa;
-    int[] st;
+    static String[] sa;
 
     @Before
     public void init() {
@@ -36,41 +34,25 @@ public class RainControllerWaterCountTest {
                 sa[i] = sc.next();
                 i++;
             }
-
         } catch (FileNotFoundException e) {
             System.out.println("ERROR can't find file:" + e);
         }
 
-
-        //Load water count for test. First number is the size off massive
-
-        file = new File(classLoader.getResource("st.txt").getFile());
-        try (Scanner sc = new Scanner(file)) {
-
-            int size = sc.nextInt();
-            st = new int[size];
-            int i = 0;
-
-            while (sc.hasNext()) {
-                st[i] = sc.nextInt();
-                i++;
-            }
-
-        } catch (FileNotFoundException e) {
-            System.out.println("ERROR can't find file:" + e);
-        }
     }
 
-
     @Test
-    public void testCounts() {
-
+    public void testJSPHistogram() {
         Hills hills = new Hills();
+        Rain r;
+        for (String variant : sa) {
+            hills.setHillsHeights(variant);
+            r = RainCalculator.calculateRain(hills.getHillsArray());
+            hills.setRainArray(r.getRainHeight());
+            hills.setRainCount(r.getCount());
+            hills.getHistogramHeights().forEach(System.out::println);
 
-        for (int i = 0; i < sa.length; i++) {
-            hills.setHillsHeights(sa[i]);
-            Assert.assertEquals(RainCalculator.calculateRain(hills.getHillsArray()).getCount(), st[i]);
         }
+
     }
 
 

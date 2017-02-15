@@ -11,15 +11,15 @@ import java.util.List;
 @Component
 public class Hills {
 
-    private ArrayList<Integer> hillsArray;
-    private ArrayList<Integer> rainArray;
-    private int rainCount;
-    private String hillsHeights;
-    private List<String> histogramHeights;
+    private ArrayList<Integer> hillsArray = new ArrayList<>();
+    private ArrayList<Integer> rainArray = new ArrayList<>();
+    private int rainCount = 0;
+    private String hillsHeights = "";
+    private ArrayList<String> histogramHeights = new ArrayList<>();
 
     /*Generates jstl String for foreach in index.jsp histogram
-    * TODO:Must be moved to view*/
-    public List<String> getHistogramHeights() {
+    */
+    public ArrayList<String> getHistogramHeights() {
         if (rainArray.size() > 0 && hillsArray.size() > 0) {
             StringBuilder sb = new StringBuilder();
 
@@ -27,9 +27,12 @@ public class Hills {
                 sb.setLength(0);
                 sb.append("'");
                 sb.append(hillsArray.get(i));
-                sb.append("','");
+                sb.append("/");
                 sb.append(rainArray.get(i));
-                sb.append("'");
+                sb.append("', ");
+                sb.append(hillsArray.get(i));
+                sb.append(", ");
+                sb.append(rainArray.get(i));
 
                 histogramHeights.add(sb.toString());
             }
@@ -37,7 +40,7 @@ public class Hills {
         return histogramHeights;
     }
 
-    public void setHistogramHeights(List<String> histogramHeights) {
+    public void setHistogramHeights(ArrayList<String> histogramHeights) {
         this.histogramHeights = histogramHeights;
     }
 
@@ -46,11 +49,12 @@ public class Hills {
     }
 
     /*Set height that was taken from user.
-    TODO: Functional must be moved to controller*/
+    @param  hillsHeights is String like 1,2,3,5,6,7*/
     public void setHillsHeights(String hillsHeights) {
         this.hillsHeights = hillsHeights;
+        this.hillsArray.clear();
+
         for (String hillHeight : hillsHeights.split(",")) {
-            this.hillsArray.clear();
             this.hillsArray.add(Integer.valueOf(hillHeight));
         }
     }

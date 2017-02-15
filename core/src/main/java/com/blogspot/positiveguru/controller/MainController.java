@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /*This class is just controller (MVC)
 * It will get requests with mappings and will recreate model
 * for rebuilding histogram with hills and waiter*/
@@ -32,6 +35,7 @@ public class MainController {
     public ModelAndView getWater(@ModelAttribute("hills") Hills hills) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("index");
+
         Rain rain = RainCalculator.calculateRain(hills.getHillsArray());
         hills.setRainArray(rain.getRainHeight());
         hills.setRainCount(rain.getCount());
@@ -41,4 +45,5 @@ public class MainController {
         return modelAndView;
 
     }
+
 }
